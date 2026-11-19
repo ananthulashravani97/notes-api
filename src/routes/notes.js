@@ -22,6 +22,9 @@ let nextId = 4;
 router.get("/",(req,res) => {
     res.json(notes);
 });
+router.get("/boom",(req,res)=>{
+    throw new Error("Boom!");
+})
 router.get("/:id",(req,res)=>{
     if(isNaN(req.params.id)) return res.status(400).json({"message": "Invalid ID"});
     const note = notes.find((n)=> n.id === parseInt(req.params.id));
